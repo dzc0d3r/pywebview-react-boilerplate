@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# pywebview-react-boilerplate
+This is a  simple boilerplate  to help you start with _pywebview_ and React. It sets up the development environment, install dependencies, as well as provides scripts for building an executable. Stack is based on Pywebview, React (create-react-app), SASS, Pyinstaller (Windows/Linux) and Py2app (macOS). 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements
+- Python 3
+- Node
+- virtualenv
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+``` bash
+yarn run init
+```
 
-### `yarn start`
+This will create a virtual environment, install pip and Node dependencies. Alternatively you can perform these steps manually.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+``` bash
+yarn install
+pip install -r requirements.txt
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+On Linux systems installation system makes educated guesses. If you run KDE, QT dependencies are installed, otherwise GTK is chosen. `apt` is used for installing GTK dependencies. In case you are running a non apt-based system, you will have to install GTK dependencies manually. See [installation](https://pywebview.flowrl.com/guide/installation.html) for details.
 
-### `yarn test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To launch the application.
 
-### `yarn build`
+``` bash
+yarn run start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To build an executable. The output binary will be produced in the `dist` directory.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+``` bash
+yarn run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To start a development server (only for testing frontend code).
 
-### `yarn eject`
+``` bash
+yarn run dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To clean the developement environment, this will delete `gui`, `dist`, `build` directories.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+``` bash
+yarn run clean
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To eject create-react-app and tweak the configuration as you may wish.
 
-## Learn More
+``` bash
+yarn run eject
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To test the frontend code if you have written tests. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+``` bash
+yarn run frontend:test
+```
+
+
+## Bug reporting
+
+Please report _pywebview_ related bugs directly to [pywebview's repository](https://github.com/r0x0r/pywebview). This repository is only for the issues related to this boilerplate.

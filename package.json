@@ -2,6 +2,7 @@
   "name": "react-pywebview-boilerplate",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -13,14 +14,32 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "sass": "^1.43.4",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "react-scripts start",
+    "frontend:dev": "BUILD_PATH='./gui' react-scripts build",
+    "frontend:prod": "BUILD_PATH='./gui' react-scripts build",
+    "frontend:test": "react-scripts test",
+    "frontend:eject": "react-scripts eject",
+    "build": "yarn run clean && yarn run frontend:prod && run-script-os",
+    "build:macos": "./venv-pywebview/bin/python build-macos.py py2app",
+    "build:windows": ".\\venv-pywebview\\Scripts\\pyinstaller build-windows.spec",
+    "build:linux": "./venv-pywebview/bin/pyinstaller build-linux.spec --onefile",
+    "clean": "run-script-os",
+    "clean:default": "rm -rf gui 2>/dev/null; rm -rf build 2>/dev/null; rm -rf dist 2>/dev/null; ",
+    "clean:windows": "if exist gui rd /S /Q gui & if exist build rd /S /Q build & if exist dist rd /S /Q dist",
+    "init": "yarn install && run-script-os",
+    "init:windows": "virtualenv -p python venv-pywebview && .\\venv-pywebview\\Scripts\\pip install -r requirements.txt",
+    "init:linux": "virtualenv -p python3 venv-pywebview && if [[ -z \"${KDE_FULL_SESSION}\" ]]; then yarn run init:qt5; else yarn run init:gtk; fi",
+    "init:default": "virtualenv -p python3 venv-pywebview && ./venv-pywebview/bin/pip install -r requirements.txt",
+    "init:qt5": "./venv-pywebview/bin/pip install pyqt5 pyqtwebengine -r requirements.txt",
+    "init:gtk": "sudo apt install libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 && ./venv-pywebview/bin/pip install pycairo pygobject -r requirements.txt",
+    "start": "yarn run frontend:dev && run-script-os",
+    "start:windows": ".\\venv-pywebview\\Scripts\\python src\\index.py",
+    "start:default": "./venv-pywebview/bin/python src/index.py"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "run-script-os": "^1.1.6"
   }
 }
