@@ -6,17 +6,20 @@ import './Ticker.sass'
 import logo from '../../assets/logo.png'
 
 
+
 export default function Ticker() {
   const [ticker, setTicker] = React.useState('')
 
   React.useEffect(() => {
     window.addEventListener('pywebviewready', function () {
 
+
       if (!(window as any).pywebview.state) {
         (window as any).pywebview.state = {}
       }
       // Expose setTicker in order to call it from Python
       (window as any).pywebview.state.setTicker = setTicker
+
     })
   }, [])
 
